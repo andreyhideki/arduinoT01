@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arduino Node.Js</title>
+    <script src="/socket.io/socket.io.js"> </script>
+    <script src="/scripts/chart.js"> </script>
+
+  </head>
+  <body>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script type="text/javascript">
+      var contador = 0;
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var data = {
+          labels: [],
+          datasets: [
+              {
+                  label: "Grafico 1",
+                  fillColor: "rgba(220,220,220,0.2)",
+                  strokeColor: "rgba(220,220,220,1)",
+                  pointColor: "rgba(220,220,220,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: []
+              }
+          ]
+      };
+
+      var myLineChart = new Chart(ctx).Line(data);
+    </script>
+    <script type="text/javascript">
+      var socket = io();
+      socket.on("dadoArduino", function(dado){
+        //console.log(dado);
+        console.log(dado.valor);
+        //myLineChart.addData([dado.valor], contador++);
+      });
+    </script>
+
+
+  </body>
+
+</html>
