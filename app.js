@@ -1,6 +1,9 @@
-var app = require("express")();
+//npm install socket.io
+//npm install express
+
+var app = require("express")(); //https://www.youtube.com/watch?v=d_SoD0iE54Y
 var express = require("express");
-//var Firebase = require("firebase");
+//var Firebase = require("firebase"); //https://www.youtube.com/watch?v=_RjfoNnxKGA
 
 app.use(express.static(__dirname + '\public'));
 app.use(express.static(__dirname + '\scripts'));
