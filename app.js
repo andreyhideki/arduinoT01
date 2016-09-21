@@ -1,5 +1,6 @@
 var app = require("express")();
 var express = require("express");
+//var Firebase = require("firebase");
 
 app.use(express.static(__dirname + '\public'));
 app.use(express.static(__dirname + '\scripts'));
@@ -21,6 +22,10 @@ var mySerial = new SerialPort("/COM3", {
   parser: serialport.parsers.readline("\n")
 });
 
+//var myFirebaseRef = new Firebase("https://arduinot01.firebaseio-demo.com/button/");
+
+
+
 mySerial.on("open", function(){
   console.log("Porta ABERTA!!");
 });
@@ -30,6 +35,7 @@ mySerial.on("data", function(data){
   io.emit("dadoArduino", {
     valor: data
   });
+  //myFirebaseRef.set(data.valor);
 });
 
 io.on("connection", function(socket){
